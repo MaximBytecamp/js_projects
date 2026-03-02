@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">Калькулятор</h1>
+
+      <section class="card">
+        <div class="inputs">
+          <input id="numA" class="input" type="number" placeholder="Первое число" />
+          <input id="numB" class="input" type="number" placeholder="Второе число" />
+        </div>
+
+        <div class="ops">
+          <button class="btn op-btn" data-op="+">+</button>
+          <button class="btn op-btn" data-op="−">−</button>
+          <button class="btn op-btn" data-op="×">×</button>
+          <button class="btn op-btn" data-op="÷">÷</button>
+        </div>
+
+        <div id="result" class="result" aria-live="polite">Выберите операцию</div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
