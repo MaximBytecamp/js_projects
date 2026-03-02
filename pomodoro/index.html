@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Таймер / Pomodoro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">Pomodoro (упрощённый)</h1>
+
+      <section class="card" aria-label="Таймер">
+        <div class="time" aria-live="polite">
+          <span class="timeLabel">Секунды</span>
+          <span id="secondsValue" class="timeNumber">0</span>
+        </div>
+
+        <div class="buttons">
+          <button id="startBtn" class="btn" type="button">Старт</button>
+          <button id="stopBtn" class="btn btnSecondary" type="button">Стоп</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
