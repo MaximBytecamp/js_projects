@@ -1,0 +1,90 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f4f5f7;
+  color: #111;
+}
+
+.container {
+  max-width: 420px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+.title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e7e7ea;
+  border-radius: 10px;
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+/* Дисплей */
+.counter-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+}
+
+.counter-value {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.counter-label {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Кнопки */
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 12px 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.btn:active { opacity: .75; }
+
+.btn-like    { background: #e74c3c; color: #fff; }
+.btn-dislike { background: #555;    color: #fff; }
+.btn-reset   { background: #fff;    color: #111; border-color: #d6d6dc; }
+
+/* История */
+.history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 120px;
+  overflow-y: auto;
+  display: grid;
+  gap: 4px;
+}
+
+.history-item {
+  font-size: 13px;
+  color: #666;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #f4f5f7;
+}

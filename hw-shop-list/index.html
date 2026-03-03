@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Список покупок</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">🛒 Список покупок</h1>
+
+      <section class="card">
+        <!-- Форма добавления товара -->
+        <form id="shop-form" class="form">
+          <input
+            id="item-input"
+            class="input"
+            type="text"
+            placeholder="Название товара…"
+            autocomplete="off"
+          />
+          <button class="btn btn-primary" type="submit">Добавить</button>
+        </form>
+
+        <!-- Список товаров -->
+        <ul id="shop-list" class="list"></ul>
+
+        <!-- Итог -->
+        <div class="footer">
+          Куплено: <strong id="bought-count">0</strong>
+          из <strong id="total-count">0</strong>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Генератор пароля</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">🔐 Генератор пароля</h1>
+
+      <section class="card">
+        <!-- Настройки -->
+        <div class="settings">
+          <label class="setting-row">
+            Длина пароля:
+            <input id="length-input" class="input-number" type="number" min="4" max="32" value="12" />
+          </label>
+
+          <label class="setting-row">
+            <input id="use-upper" type="checkbox" checked />
+            Заглавные буквы (A–Z)
+          </label>
+
+          <label class="setting-row">
+            <input id="use-digits" type="checkbox" checked />
+            Цифры (0–9)
+          </label>
+
+          <label class="setting-row">
+            <input id="use-symbols" type="checkbox" />
+            Символы (!@#$%)
+          </label>
+        </div>
+
+        <!-- Результат -->
+        <div class="result-row">
+          <output id="password-output" class="password-output">—</output>
+          <button id="copy-btn" class="btn btn-secondary" type="button" title="Копировать">📋</button>
+        </div>
+
+        <button id="generate-btn" class="btn btn-primary" type="button">Сгенерировать</button>
+
+        <!-- Статус копирования -->
+        <p id="copy-status" class="copy-status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
