@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Заметки</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">📝 Заметки</h1>
+
+      <section class="card">
+        <form id="note-form" class="form">
+          <textarea
+            id="note-input"
+            class="textarea"
+            placeholder="Введи заметку…"
+            rows="3"
+          ></textarea>
+          <button class="btn btn-primary" type="submit">Сохранить</button>
+        </form>
+
+        <ul id="note-list" class="list"></ul>
+
+        <button id="clear-btn" class="btn btn-danger">Очистить всё</button>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

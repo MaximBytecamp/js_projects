@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Настройки</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">⚙️ Настройки пользователя</h1>
+
+      <section class="card">
+        <label class="field">
+          <span class="label-text">Имя пользователя</span>
+          <input id="username-input" class="input" type="text" placeholder="Введи имя…" />
+        </label>
+
+        <label class="field">
+          <span class="label-text">Тема</span>
+          <select id="theme-select" class="select">
+            <option value="light">☀️ Светлая</option>
+            <option value="dark">🌙 Тёмная</option>
+            <option value="sepia">📜 Сепия</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label-text">Размер шрифта</span>
+          <div class="range-row">
+            <input id="font-range" class="range" type="range" min="12" max="24" step="1" value="16" />
+            <span id="font-value" class="range-label">16px</span>
+          </div>
+        </label>
+
+        <div class="actions">
+          <button id="save-btn"  class="btn btn-primary">Сохранить</button>
+          <button id="reset-btn" class="btn btn-danger">Сбросить</button>
+        </div>
+
+        <p id="status-msg" class="status-msg" aria-live="polite"></p>
+
+        <div class="preview">
+          <p id="preview-text">Привет, <strong id="preview-name">гость</strong>! Так выглядит твой текст.</p>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

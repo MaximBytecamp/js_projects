@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Словарик</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="title">📖 Мой словарик</h1>
+
+      <section class="card">
+        <form id="word-form" class="form">
+          <input id="word-input"  class="input" type="text" placeholder="Слово (EN)" autocomplete="off" />
+          <input id="trans-input" class="input" type="text" placeholder="Перевод (RU)" autocomplete="off" />
+          <button class="btn btn-primary" type="submit">Добавить</button>
+        </form>
+
+        <input id="search-input" class="input" type="search" placeholder="Поиск…" />
+
+        <table id="word-table" class="table">
+          <thead>
+            <tr>
+              <th>Слово</th>
+              <th>Перевод</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="word-tbody"></tbody>
+        </table>
+
+        <p id="empty-msg" class="empty-msg">Словарик пуст. Добавь первое слово!</p>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
