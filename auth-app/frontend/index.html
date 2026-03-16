@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auth App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ СТРАНИЦА АВТОРИЗАЦИИ ══════════════════════════════════ -->
+  <div id="page-auth" class="page">
+    <div class="card">
+      <h1 class="logo">Auth App</h1>
+
+      <!-- Табы -->
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Вход</button>
+        <button class="tab"        data-tab="register">Регистрация</button>
+      </div>
+
+      <!-- Форма входа -->
+      <form id="login-form" class="auth-form" novalidate>
+        <label class="field">
+          <span>Логин</span>
+          <input id="login-username" type="text" class="input" placeholder="username" autocomplete="username" />
+        </label>
+        <label class="field">
+          <span>Пароль</span>
+          <input id="login-password" type="password" class="input" placeholder="••••••" autocomplete="current-password" />
+        </label>
+        <button class="btn btn-primary" type="submit">Войти</button>
+        <p class="form-error" id="login-error"></p>
+      </form>
+
+      <!-- Форма регистрации -->
+      <form id="register-form" class="auth-form hidden" novalidate>
+        <label class="field">
+          <span>Логин</span>
+          <input id="reg-username" type="text" class="input" placeholder="username" autocomplete="username" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input id="reg-email" type="email" class="input" placeholder="you@example.com" autocomplete="email" />
+        </label>
+        <label class="field">
+          <span>Пароль <small>(мин. 6 символов)</small></span>
+          <input id="reg-password" type="password" class="input" placeholder="••••••" autocomplete="new-password" />
+        </label>
+        <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+        <p class="form-error" id="reg-error"></p>
+        <p class="form-success" id="reg-success"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══ ЛИЧНЫЙ КАБИНЕТ ════════════════════════════════════════ -->
+  <div id="page-cabinet" class="page hidden">
+    <header class="header">
+      <span class="header-logo">🔐 Auth App</span>
+      <button id="logout-btn" class="btn btn-outline">Выйти</button>
+    </header>
+
+    <main class="cabinet-content">
+      <section class="card">
+        <h2>👤 Личный кабинет</h2>
+
+        <!-- Информация -->
+        <div class="info-grid">
+          <div class="info-row">
+            <span class="info-label">ID</span>
+            <span id="cab-id" class="info-value">—</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Логин</span>
+            <span id="cab-username" class="info-value">—</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email</span>
+            <span id="cab-email" class="info-value">—</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Дата регистрации</span>
+            <span id="cab-created" class="info-value">—</span>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- Редактирование имени -->
+        <h3>Изменить логин</h3>
+        <form id="update-form" class="update-form" novalidate>
+          <input id="new-username" type="text" class="input" placeholder="Новый логин" />
+          <button class="btn btn-primary" type="submit">Сохранить</button>
+        </form>
+        <p class="form-error"   id="update-error"></p>
+        <p class="form-success" id="update-success"></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
