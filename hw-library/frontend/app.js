@@ -8,24 +8,29 @@ const booksList = document.getElementById("books-list");
 const booksForm = document.getElementById("books-form");
 
 async function loadBooks() {
-  const res = await fetch(`${API}/books/`);
-  const data = await res.json();
-  booksList.innerHTML = "";
+  try {
+    const res = await fetch(`${API}/books/`);
+    const data = await res.json();
+    booksList.innerHTML = "";
 
-  data.forEach((b) => {
-    const li = document.createElement("li");
+    data.forEach((b) => {
+      const li = document.createElement("li");
 
-    const span = document.createElement("span");
-    span.textContent = `${b.title} — ${b.author}`;
+      const span = document.createElement("span");
+      span.textContent = `${b.title} — ${b.author}`;
 
-    const btn = document.createElement("button");
-    btn.className = "del-btn";
-    btn.textContent = "✕";
-    btn.addEventListener("click", () => deleteBook(b.id));
+      const btn = document.createElement("button");
+      btn.className = "del-btn";
+      btn.textContent = "✕";
+      btn.addEventListener("click", () => deleteBook(b.id));
 
-    li.append(span, btn);
-    booksList.append(li);
-  });
+      li.append(span, btn);
+      booksList.append(li);
+    });
+  } catch (err) {
+    booksList.innerHTML = "<li style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</li>";
+    console.error("loadBooks error:", err);
+  }
 }
 
 booksForm.addEventListener("submit", async (e) => {
@@ -53,16 +58,21 @@ async function deleteBook(id) {
 const authorsList = document.getElementById("authors-list");
 
 async function loadAuthors() {
-  const res = await fetch(`${API}/authors/`);
-  const data = await res.json();
-  authorsList.innerHTML = "";
+  try {
+    const res = await fetch(`${API}/authors/`);
+    const data = await res.json();
+    authorsList.innerHTML = "";
 
-  data.forEach((a) => {
-    const li = document.createElement("li");
-    li.textContent = a.name;
-    // ЗАДАНИЕ: добавь кнопку «✕» для удаления автора
-    authorsList.append(li);
-  });
+    data.forEach((a) => {
+      const li = document.createElement("li");
+      li.textContent = a.name;
+      // ЗАДАНИЕ: добавь кнопку «✕» для удаления автора
+      authorsList.append(li);
+    });
+  } catch (err) {
+    authorsList.innerHTML = "<li style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</li>";
+    console.error("loadAuthors error:", err);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════

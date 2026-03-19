@@ -20,10 +20,15 @@ const statCorrect = document.getElementById("stat-correct");
 const statPercent = document.getElementById("stat-percent");
 
 async function loadQuestions() {
-  const res = await fetch(`${API}/questions/`);
-  questions = await res.json();
-  totalNum.textContent = questions.length;
-  showQuestion();
+  try {
+    const res = await fetch(`${API}/questions/`);
+    questions = await res.json();
+    totalNum.textContent = questions.length;
+    showQuestion();
+  } catch (err) {
+    optionsDiv.innerHTML = "<p style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</p>";
+    console.error("loadQuestions error:", err);
+  }
 }
 
 function showQuestion() {

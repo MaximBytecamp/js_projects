@@ -9,24 +9,29 @@ const taskForm  = document.getElementById("task-form");
 const taskTitle = document.getElementById("task-title");
 
 async function loadTasks() {
-  const res  = await fetch(`${API}/tasks/`);
-  const data = await res.json();
-  taskList.innerHTML = "";
+  try {
+    const res  = await fetch(`${API}/tasks/`);
+    const data = await res.json();
+    taskList.innerHTML = "";
 
-  data.forEach((t) => {
-    const li = document.createElement("li");
+    data.forEach((t) => {
+      const li = document.createElement("li");
 
-    const span = document.createElement("span");
-    span.textContent = t.title;
-    if (t.done) span.classList.add("done");
+      const span = document.createElement("span");
+      span.textContent = t.title;
+      if (t.done) span.classList.add("done");
 
-    const btn = document.createElement("button");
-    btn.textContent = "✕";
-    btn.addEventListener("click", () => deleteTask(t.id));
+      const btn = document.createElement("button");
+      btn.textContent = "✕";
+      btn.addEventListener("click", () => deleteTask(t.id));
 
-    li.append(span, btn);
-    taskList.append(li);
-  });
+      li.append(span, btn);
+      taskList.append(li);
+    });
+  } catch (err) {
+    taskList.innerHTML = "<li style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</li>";
+    console.error("loadTasks error:", err);
+  }
 }
 
 taskForm.addEventListener("submit", async (e) => {
@@ -52,24 +57,29 @@ async function deleteTask(id) {
 const tagList = document.getElementById("tag-list");
 
 async function loadTags() {
-  const res  = await fetch(`${API}/tags/`);
-  const data = await res.json();
-  tagList.innerHTML = "";
+  try {
+    const res  = await fetch(`${API}/tags/`);
+    const data = await res.json();
+    tagList.innerHTML = "";
 
-  data.forEach((tag) => {
-    const li = document.createElement("li");
+    data.forEach((tag) => {
+      const li = document.createElement("li");
 
-    const dot = document.createElement("span");
-    dot.className = "tag-color";
-    dot.style.background = tag.color;
+      const dot = document.createElement("span");
+      dot.className = "tag-color";
+      dot.style.background = tag.color;
 
-    const name = document.createElement("span");
-    name.textContent = tag.name;
+      const name = document.createElement("span");
+      name.textContent = tag.name;
 
-    li.append(dot, name);
-    // ЗАДАНИЕ: добавь кнопку «✕» для удаления тега
-    tagList.append(li);
-  });
+      li.append(dot, name);
+      // ЗАДАНИЕ: добавь кнопку «✕» для удаления тега
+      tagList.append(li);
+    });
+  } catch (err) {
+    tagList.innerHTML = "<li style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</li>";
+    console.error("loadTags error:", err);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════

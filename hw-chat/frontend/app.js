@@ -13,36 +13,41 @@ const roomMembers = document.getElementById("room-members");
 let currentRoom = "general";
 
 async function loadRooms() {
-  const res  = await fetch(`${API}/rooms/`);
-  const data = await res.json();
-  roomList.innerHTML = "";
+  try {
+    const res  = await fetch(`${API}/rooms/`);
+    const data = await res.json();
+    roomList.innerHTML = "";
 
-  data.forEach((r) => {
-    const btn = document.createElement("button");
-    btn.className = "room-btn" + (r.name === currentRoom ? " active" : "");
-    btn.textContent = `# ${r.name}`;
-    btn.addEventListener("click", () => {
-      currentRoom = r.name;
-      loadRooms();      // обновить подсветку
-      loadMessages();   // загрузить сообщения комнаты
+    data.forEach((r) => {
+      const btn = document.createElement("button");
+      btn.className = "room-btn" + (r.name === currentRoom ? " active" : "");
+      btn.textContent = `# ${r.name}`;
+      btn.addEventListener("click", () => {
+        currentRoom = r.name;
+        loadRooms();      // обновить подсветку
+        loadMessages();   // загрузить сообщения комнаты
 
-      // Показать участников
-      roomTitle.textContent = r.name;
-      roomMembers.textContent = r.members.length
-        ? `👥 ${r.members.join(", ")}`
-        : "";
+        // Показать участников
+        roomTitle.textContent = r.name;
+        roomMembers.textContent = r.members.length
+          ? `👥 ${r.members.join(", ")}`
+          : "";
+      });
+
+      // Авто-показать участников текущей комнаты
+      if (r.name === currentRoom) {
+        roomTitle.textContent = r.name;
+        roomMembers.textContent = r.members.length
+          ? `👥 ${r.members.join(", ")}`
+          : "";
+      }
+
+      roomList.append(btn);
     });
-
-    // Авто-показать участников текущей комнаты
-    if (r.name === currentRoom) {
-      roomTitle.textContent = r.name;
-      roomMembers.textContent = r.members.length
-        ? `👥 ${r.members.join(", ")}`
-        : "";
-    }
-
-    roomList.append(btn);
-  });
+  } catch (err) {
+    roomList.innerHTML = "<p style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</p>";
+    console.error("loadRooms error:", err);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -93,33 +98,38 @@ const msgForm     = document.getElementById("msg-form");
 const msgText     = document.getElementById("msg-text");
 
 async function loadMessages() {
-  const res  = await fetch(`${API}/messages/?room=${encodeURIComponent(currentRoom)}`);
-  const data = await res.json();
-  messagesDiv.innerHTML = "";
+  try {
+    const res  = await fetch(`${API}/messages/?room=${encodeURIComponent(currentRoom)}`);
+    const data = await res.json();
+    messagesDiv.innerHTML = "";
 
-  const myName = usernameInput.value.trim();
+    const myName = usernameInput.value.trim();
 
-  data.forEach((m) => {
-    const div = document.createElement("div");
-    div.className = "msg " + (m.author === myName ? "mine" : "other");
+    data.forEach((m) => {
+      const div = document.createElement("div");
+      div.className = "msg " + (m.author === myName ? "mine" : "other");
 
-    const author = document.createElement("div");
-    author.className = "author";
-    author.textContent = m.author;
+      const author = document.createElement("div");
+      author.className = "author";
+      author.textContent = m.author;
 
-    const text = document.createElement("div");
-    text.textContent = m.text;
+      const text = document.createElement("div");
+      text.textContent = m.text;
 
-    const time = document.createElement("div");
-    time.className = "time";
-    time.textContent = m.time;
+      const time = document.createElement("div");
+      time.className = "time";
+      time.textContent = m.time;
 
-    div.append(author, text, time);
-    messagesDiv.append(div);
-  });
+      div.append(author, text, time);
+      messagesDiv.append(div);
+    });
 
-  // Прокрутить вниз
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    // Прокрутить вниз
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  } catch (err) {
+    messagesDiv.innerHTML = "<p style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</p>";
+    console.error("loadMessages error:", err);
+  }
 }
 
 msgForm.addEventListener("submit", async (e) => {

@@ -12,23 +12,28 @@ const sampleOutput   = document.getElementById("sample-output");
 let selectedCity = null;
 
 async function loadCities() {
-  const res  = await fetch(`${API}/cities/`);
-  const data = await res.json();
-  cityButtons.innerHTML = "";
+  try {
+    const res  = await fetch(`${API}/cities/`);
+    const data = await res.json();
+    cityButtons.innerHTML = "";
 
-  data.forEach((city) => {
-    const btn = document.createElement("button");
-    btn.className = "city-btn";
-    btn.textContent = city.name;
-    btn.addEventListener("click", () => {
-      // Подсветить выбранную кнопку
-      document.querySelectorAll(".city-btn").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      selectedCity = city.name;
-      loadForecast(city.name);
+    data.forEach((city) => {
+      const btn = document.createElement("button");
+      btn.className = "city-btn";
+      btn.textContent = city.name;
+      btn.addEventListener("click", () => {
+        // Подсветить выбранную кнопку
+        document.querySelectorAll(".city-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedCity = city.name;
+        loadForecast(city.name);
+      });
+      cityButtons.append(btn);
     });
-    cityButtons.append(btn);
-  });
+  } catch (err) {
+    cityButtons.innerHTML = "<p style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</p>";
+    console.error("loadCities error:", err);
+  }
 }
 
 /* ═══════════════════════════════════════

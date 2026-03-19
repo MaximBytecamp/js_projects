@@ -10,27 +10,32 @@ const productName = document.getElementById("product-name");
 const productPrice = document.getElementById("product-price");
 
 async function loadProducts() {
-  const res = await fetch(`${API}/products/`);
-  const data = await res.json();
-  productList.innerHTML = "";
+  try {
+    const res = await fetch(`${API}/products/`);
+    const data = await res.json();
+    productList.innerHTML = "";
 
-  data.forEach((p) => {
-    const li = document.createElement("li");
+    data.forEach((p) => {
+      const li = document.createElement("li");
 
-    const name = document.createElement("span");
-    name.textContent = p.name;
+      const name = document.createElement("span");
+      name.textContent = p.name;
 
-    const price = document.createElement("span");
-    price.className = "price";
-    price.textContent = `${p.price.toLocaleString("ru-RU")} ₽`;
+      const price = document.createElement("span");
+      price.className = "price";
+      price.textContent = `${p.price.toLocaleString("ru-RU")} ₽`;
 
-    const btn = document.createElement("button");
-    btn.textContent = "✕";
-    btn.addEventListener("click", () => deleteProduct(p.id));
+      const btn = document.createElement("button");
+      btn.textContent = "✕";
+      btn.addEventListener("click", () => deleteProduct(p.id));
 
-    li.append(name, price, btn);
-    productList.append(li);
-  });
+      li.append(name, price, btn);
+      productList.append(li);
+    });
+  } catch (err) {
+    productList.innerHTML = "<li style='color:red'>❌ Ошибка загрузки. Проверь, запущен ли сервер (uvicorn main:app --reload)</li>";
+    console.error("loadProducts error:", err);
+  }
 }
 
 productForm.addEventListener("submit", async (e) => {
@@ -59,16 +64,21 @@ async function deleteProduct(id) {
 const categoryList = document.getElementById("category-list");
 
 async function loadCategories() {
-  const res = await fetch(`${API}/categories/`);
-  const data = await res.json();
-  categoryList.innerHTML = "";
+  try {
+    const res = await fetch(`${API}/categories/`);
+    const data = await res.json();
+    categoryList.innerHTML = "";
 
-  data.forEach((c) => {
-    const li = document.createElement("li");
-    li.textContent = c.name;
-    // ЗАДАНИЕ: добавь кнопку «✕» для удаления категории
-    categoryList.append(li);
-  });
+    data.forEach((c) => {
+      const li = document.createElement("li");
+      li.textContent = c.name;
+      // ЗАДАНИЕ: добавь кнопку «✕» для удаления категории
+      categoryList.append(li);
+    });
+  } catch (err) {
+    categoryList.innerHTML = "<li style='color:red'>❌ Ошибка загрузки категорий</li>";
+    console.error("loadCategories error:", err);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════
