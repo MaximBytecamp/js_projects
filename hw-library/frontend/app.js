@@ -1,82 +1,78 @@
-const API = window.location.origin + '/api';
+const API = "/api";
 
-// ── универсальный fetch ──────────────────────────────────────
-async function api(path, options = {}) {
-  const res = await fetch(API + path, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  });
-  if (res.status === 204) return null;
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.detail || 'Ошибка');
-  return data;
-}
+/* ═══════════════════════════════════════
+   КНИГИ  — полный пример (GET, POST, DELETE)
+   ═══════════════════════════════════════ */
 
-// ════════════════════════════════════════════════════════════════
-// КНИГИ — полный CRUD (образец для студентов)
-// ════════════════════════════════════════════════════════════════
-const booksList  = document.getElementById('books-list');
-const booksForm  = document.getElementById('books-form');
-const booksError = document.getElementById('books-error');
+const booksList = document.getElementById("books-list");
+const booksForm = document.getElementById("books-form");
 
 async function loadBooks() {
-  const books = await api('/books/');
-  booksList.innerHTML = '';
-  books.forEach(({ id, title, author }) => {
-    const li = document.createElement('li');
+  const res = await fetch(`${API}/books/`);
+  const data = await res.json();
+  booksList.innerHTML = "";
 
-    const span = document.createElement('span');
-    span.textContent = `${title} — ${author}`;
+  data.forEach((b) => {
+    const li = document.createElement("li");
 
-    const del = document.createElement('button');
-    del.className = 'del-btn';
-    del.textContent = '✕';
-    del.addEventListener('click', async () => {
-      await api(`/books/${id}`, { method: 'DELETE' });
-      await loadBooks();
-    });
+    const span = document.createElement("span");
+    span.textContent = `${b.title} — ${b.author}`;
 
-    li.append(span, del);
+    const btn = document.createElement("button");
+    btn.className = "del-btn";
+    btn.textContent = "✕";
+    btn.addEventListener("click", () => deleteBook(b.id));
+
+    li.append(span, btn);
     booksList.append(li);
   });
 }
 
-booksForm.addEventListener('submit', async (e) => {
+booksForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  booksError.textContent = '';
-  const title  = document.getElementById('book-title').value;
-  const author = document.getElementById('book-author').value;
-  try {
-    await api('/books/', {
-      method: 'POST',
-      body: JSON.stringify({ title, author }),
-    });
-    booksForm.reset();
-    await loadBooks();
-  } catch (err) {
-    booksError.textContent = err.message;
-  }
+  const title = document.getElementById("book-title").value.trim();
+  const author = document.getElementById("book-author").value.trim();
+  await fetch(`${API}/books/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, author }),
+  });
+  booksForm.reset();
+  loadBooks();
 });
 
-// ════════════════════════════════════════════════════════════════
-// АВТОРЫ — только GET (студенты допишут POST и DELETE)
-// ════════════════════════════════════════════════════════════════
-const authorsList = document.getElementById('authors-list');
+async function deleteBook(id) {
+  await fetch(`${API}/books/${id}`, { method: "DELETE" });
+  loadBooks();
+}
+
+/* ═══════════════════════════════════════
+   АВТОРЫ  — только GET (остальное — задание)
+   ═══════════════════════════════════════ */
+
+const authorsList = document.getElementById("authors-list");
 
 async function loadAuthors() {
-  const authors = await api('/authors/');
-  authorsList.innerHTML = '';
-  authors.forEach(({ id, name }) => {
-    const li = document.createElement('li');
-    li.textContent = name;
-    // ЗАДАНИЕ: добавь кнопку удаления по аналогии с книгами выше
+  const res = await fetch(`${API}/authors/`);
+  const data = await res.json();
+  authorsList.innerHTML = "";
+
+  data.forEach((a) => {
+    const li = document.createElement("li");
+    li.textContent = a.name;
+    // ЗАДАНИЕ: добавь кнопку «✕» для удаления автора
     authorsList.append(li);
   });
 }
 
-// ЗАДАНИЕ: найди закомментированную форму в index.html,
-// раскомментируй её и напиши обработчик submit по аналогии
-// с booksForm выше. Не забудь добавить POST-роут на бэкенде!
+// ══════════════════════════════════════════════════════════════
+// ЗАДАНИЕ:
+// 1. Раскомментируй форму в index.html
+// 2. Получи элементы формы (getElementById)
+// 3. Повесь обработчик submit → отправь POST на /api/authors/
+// 4. Добавь кнопку удаления в loadAuthors → отправь DELETE
+// 5. Не забудь дописать POST и DELETE в backend/routers/authors.py
+// ══════════════════════════════════════════════════════════════
 
 // ── Загрузка при старте ──────────────────────────────────────
 loadBooks();
