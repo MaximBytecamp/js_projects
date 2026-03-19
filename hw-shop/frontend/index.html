@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HW — Магазин</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🛒 Магазин</h1>
+
+  <div class="grid">
+    <!-- ===== ТОВАРЫ (полный пример) ===== -->
+    <section>
+      <h2>Товары</h2>
+
+      <form id="product-form">
+        <input id="product-name"  type="text"   placeholder="Название товара" required />
+        <input id="product-price" type="number"  placeholder="Цена" min="0" required />
+        <button type="submit">Добавить</button>
+      </form>
+
+      <ul id="product-list"></ul>
+    </section>
+
+    <!-- ===== КАТЕГОРИИ (только список) ===== -->
+    <section>
+      <h2>Категории</h2>
+
+      <p class="hint">⚠️ Добавление и удаление категорий&nbsp;— твоё задание!</p>
+
+      <!--
+        ЗАДАНИЕ: раскомментируй форму и допиши JS-код в app.js,
+        а также добавь POST и DELETE в backend/routers/categories.py
+
+        <form id="category-form">
+          <input id="category-name" type="text" placeholder="Название категории" required />
+          <button type="submit">Добавить</button>
+        </form>
+      -->
+
+      <ul id="category-list"></ul>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

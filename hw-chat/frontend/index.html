@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HW — Мини-чат</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>💬 Мини-чат</h1>
+
+  <!-- Имя пользователя -->
+  <div class="username-bar">
+    <label>Твоё имя:</label>
+    <input id="username" type="text" value="Студент" />
+  </div>
+
+  <div class="chat-layout">
+    <!-- ===== КОМНАТЫ (сайдбар — задание) ===== -->
+    <aside id="sidebar">
+      <h3>Комнаты</h3>
+
+      <p class="hint">⚠️ Создание комнат и «Присоединиться» — твоё задание!</p>
+
+      <div id="room-list" class="room-list">
+        <!-- кнопки комнат появятся динамически -->
+      </div>
+
+      <!--
+        ЗАДАНИЕ: раскомментируй форму создания комнаты
+
+        <form id="room-form" class="room-form">
+          <input id="room-name" type="text" placeholder="Новая комната" required />
+          <button type="submit">+</button>
+        </form>
+      -->
+    </aside>
+
+    <!-- ===== СООБЩЕНИЯ (готово) ===== -->
+    <main>
+      <div id="chat-header" class="chat-header">
+        <h3 id="room-title">general</h3>
+        <span id="room-members" class="members"></span>
+      </div>
+
+      <div id="messages" class="messages">
+        <!-- сообщения появятся динамически -->
+      </div>
+
+      <form id="msg-form" class="msg-form">
+        <input id="msg-text" type="text" placeholder="Написать сообщение..." required />
+        <button type="submit">Отправить</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

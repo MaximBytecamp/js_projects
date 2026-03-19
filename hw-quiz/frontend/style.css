@@ -1,0 +1,114 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f0f23;
+  color: #e0e0e0;
+  padding: 2rem;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+h1 { text-align: center; margin-bottom: 1.5rem; color: #ffd700; }
+h2 { margin-bottom: .8rem; }
+
+.layout { display: flex; flex-direction: column; gap: 1.5rem; }
+
+section {
+  background: #1a1a3e;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+
+/* Вопрос */
+.question-text {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Варианты */
+.options { display: flex; flex-direction: column; gap: .5rem; }
+
+.option-btn {
+  padding: .75rem 1rem;
+  border: 2px solid #3a3a6e;
+  border-radius: 10px;
+  background: #22224a;
+  color: #e0e0e0;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all .2s;
+}
+.option-btn:hover { border-color: #ffd700; background: #2a2a5e; }
+.option-btn.selected { border-color: #ffd700; background: #2e2e60; }
+.option-btn.correct  { border-color: #2ecc71; background: #1a4a2e; color: #2ecc71; }
+.option-btn.wrong    { border-color: #e74c3c; background: #4a1a1a; color: #e74c3c; }
+.option-btn:disabled { cursor: default; opacity: .85; }
+
+/* Фидбэк */
+.feedback {
+  margin-top: 1rem;
+  padding: .7rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.feedback.correct-fb { background: #1a4a2e; color: #2ecc71; }
+.feedback.wrong-fb   { background: #4a1a1a; color: #e74c3c; }
+
+/* Кнопка «далее» */
+.next-btn {
+  margin-top: 1rem;
+  padding: .65rem 1.3rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  background: #ffd700;
+  color: #0f0f23;
+  font-weight: 600;
+  transition: background .2s;
+}
+.next-btn:hover { background: #ffec4d; }
+
+.hidden { display: none; }
+
+/* Статистика */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: .5rem;
+}
+
+.stat-card {
+  text-align: center;
+  background: #22224a;
+  border-radius: 10px;
+  padding: 1rem .5rem;
+}
+
+.stat-num {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+.stat-label {
+  font-size: .85rem;
+  color: #999;
+}
+
+.hint {
+  background: rgba(255,193,7,.15);
+  border-left: 4px solid #ffc107;
+  padding: .6rem .8rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-size: .9rem;
+  color: #ffc107;
+}

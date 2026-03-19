@@ -1,0 +1,187 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 { text-align: center; margin-bottom: 1rem; color: #00d2ff; }
+
+/* Имя пользователя */
+.username-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+.username-bar label { font-size: .9rem; opacity: .7; }
+.username-bar input {
+  padding: .4rem .7rem;
+  border: 1px solid #3a3a6e;
+  border-radius: 8px;
+  background: #22224a;
+  color: #fff;
+  font-size: .95rem;
+  width: 160px;
+}
+
+/* Раскладка чата */
+.chat-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+  height: 500px;
+}
+
+/* Сайдбар */
+#sidebar {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+#sidebar h3 { margin-bottom: .6rem; font-size: 1rem; }
+
+.room-list { display: flex; flex-direction: column; gap: .4rem; flex: 1; }
+
+.room-btn {
+  padding: .55rem .8rem;
+  border: 1px solid #3a3a6e;
+  border-radius: 8px;
+  background: #22224a;
+  color: #ccc;
+  font-size: .85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all .2s;
+}
+.room-btn:hover { border-color: #00d2ff; color: #fff; }
+.room-btn.active { background: #00d2ff; color: #1a1a2e; font-weight: 600; border-color: #00d2ff; }
+
+.room-form {
+  display: flex;
+  gap: .4rem;
+  margin-top: .6rem;
+}
+.room-form input {
+  flex: 1;
+  padding: .4rem .6rem;
+  border: 1px solid #3a3a6e;
+  border-radius: 6px;
+  background: #22224a;
+  color: #fff;
+  font-size: .85rem;
+}
+.room-form button {
+  padding: .4rem .7rem;
+  border: none;
+  border-radius: 6px;
+  background: #00d2ff;
+  color: #1a1a2e;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Основная часть */
+main {
+  display: flex;
+  flex-direction: column;
+  background: #16213e;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: .8rem 1rem;
+  background: #0f3460;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-header h3 { font-size: 1rem; }
+.members { font-size: .8rem; opacity: .6; }
+
+/* Сообщения */
+.messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.msg {
+  max-width: 75%;
+  padding: .5rem .8rem;
+  border-radius: 12px;
+  font-size: .9rem;
+}
+.msg.other {
+  background: #22224a;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.msg.mine {
+  background: #0f3460;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.msg .author {
+  font-weight: 600;
+  font-size: .8rem;
+  color: #00d2ff;
+  margin-bottom: .15rem;
+}
+.msg .time {
+  font-size: .7rem;
+  opacity: .5;
+  margin-top: .2rem;
+  text-align: right;
+}
+
+/* Форма отправки */
+.msg-form {
+  display: flex;
+  padding: .6rem;
+  gap: .5rem;
+  background: #0f3460;
+}
+.msg-form input {
+  flex: 1;
+  padding: .5rem .8rem;
+  border: 1px solid #3a3a6e;
+  border-radius: 8px;
+  background: #22224a;
+  color: #fff;
+  font-size: .9rem;
+}
+.msg-form button {
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #00d2ff;
+  color: #1a1a2e;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: .9rem;
+}
+.msg-form button:hover { background: #33e0ff; }
+
+.hint {
+  background: rgba(255,193,7,.15);
+  border-left: 3px solid #ffc107;
+  padding: .5rem .6rem;
+  margin-bottom: .6rem;
+  border-radius: 4px;
+  font-size: .75rem;
+  color: #ffc107;
+}

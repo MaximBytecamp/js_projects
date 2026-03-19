@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HW — Прогноз погоды</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🌤 Прогноз погоды</h1>
+
+  <div class="layout">
+    <!-- ===== ГОРОДА (готово — загружается из /api/cities/) ===== -->
+    <section>
+      <h2>Выбери город</h2>
+      <div id="city-buttons" class="city-buttons">
+        <!-- кнопки городов появятся динамически -->
+      </div>
+    </section>
+
+    <!-- ===== ПРОГНОЗ (задание) ===== -->
+    <section>
+      <h2>Прогноз</h2>
+
+      <p class="hint">⚠️ Прогноз заработает после того, как ты допишешь GET&nbsp;/api/forecast/ с query-параметрами</p>
+
+      <div id="forecast-info" class="forecast-info">
+        <p class="placeholder">← Выбери город, чтобы увидеть прогноз</p>
+      </div>
+
+      <div id="forecast-cards" class="forecast-cards">
+        <!-- карточки дней появятся динамически -->
+      </div>
+    </section>
+
+    <!-- ===== ПРИМЕР ОТВЕТА (готово) ===== -->
+    <section class="sample-section">
+      <h2>📄 Пример ответа API</h2>
+      <p>GET <code>/api/forecast/sample</code> уже работает. Посмотри формат:</p>
+      <pre id="sample-output">Загрузка...</pre>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HW — Викторина</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🧠 Викторина</h1>
+
+  <div class="layout">
+    <!-- ===== ВОПРОС (готово — загружается из /api/questions/) ===== -->
+    <section id="quiz-section">
+      <h2>Вопрос <span id="current-num">1</span> / <span id="total-num">?</span></h2>
+      <p id="question-text" class="question-text">Загрузка...</p>
+
+      <div id="options" class="options">
+        <!-- кнопки вариантов появятся динамически -->
+      </div>
+
+      <div id="feedback" class="feedback hidden"></div>
+
+      <button id="next-btn" class="next-btn hidden">Следующий вопрос →</button>
+    </section>
+
+    <!-- ===== СТАТИСТИКА ===== -->
+    <section id="stats-section">
+      <h2>📊 Статистика</h2>
+
+      <p class="hint">⚠️ Статистика заработает после того, как ты допишешь POST&nbsp;/api/results/check</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-num" id="stat-total">0</span>
+          <span class="stat-label">Отвечено</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-correct">0</span>
+          <span class="stat-label">Правильно</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" id="stat-percent">0%</span>
+          <span class="stat-label">Точность</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

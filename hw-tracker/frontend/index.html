@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HW — Трекер задач</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📋 Трекер задач</h1>
+
+  <div class="grid">
+    <!-- ===== ЗАДАЧИ (полный пример) ===== -->
+    <section>
+      <h2>Задачи</h2>
+
+      <form id="task-form">
+        <input id="task-title" type="text" placeholder="Новая задача" required />
+        <button type="submit">Добавить</button>
+      </form>
+
+      <ul id="task-list"></ul>
+    </section>
+
+    <!-- ===== ТЕГИ (только список) ===== -->
+    <section>
+      <h2>Теги</h2>
+
+      <p class="hint">⚠️ Добавление и удаление тегов&nbsp;— твоё задание!</p>
+
+      <!--
+        ЗАДАНИЕ: раскомментируй форму и допиши JS-код в app.js,
+        а также добавь POST и DELETE в backend/routers/tags.py
+
+        <form id="tag-form">
+          <input id="tag-name"  type="text"  placeholder="Название тега" required />
+          <input id="tag-color" type="color" value="#888888" />
+          <button type="submit">Добавить</button>
+        </form>
+      -->
+
+      <ul id="tag-list"></ul>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
